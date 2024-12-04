@@ -100,36 +100,38 @@ for (let i = 0; i < galleryItems.length; i++) {
 }
 
 ulEl.addEventListener("click", (e) => {
-  lightboxImgEl.src = e.target.src;
-  lightboxImgEl.alt = e.target.alt;
+  if (e.target !== e.currentTarget) {
+    lightboxImgEl.src = e.target.src;
+    lightboxImgEl.alt = e.target.alt;
 
-  modalEl.classList.add("is-open");
+    modalEl.classList.add("is-open");
 
-  buttonEl.addEventListener("click", () => {
-    closeModal();
-  });
-
-  overlayEl.addEventListener("click", () => {
-    closeModal();
-  });
-
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") {
+    buttonEl.addEventListener("click", () => {
       closeModal();
-    }
-  });
+    });
 
-  buttonEl.removeEventListener("click", () => {
-    closeModal();
-  });
-
-  overlayEl.removeEventListener("click", () => {
-    closeModal();
-  });
-
-  document.removeEventListener("keydown", (e) => {
-    if (e.key === "Escape") {
+    overlayEl.addEventListener("click", () => {
       closeModal();
-    }
-  });
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        closeModal();
+      }
+    });
+
+    buttonEl.removeEventListener("click", () => {
+      closeModal();
+    });
+
+    overlayEl.removeEventListener("click", () => {
+      closeModal();
+    });
+
+    document.removeEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        closeModal();
+      }
+    });
+  }
 });
